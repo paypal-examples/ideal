@@ -31,7 +31,7 @@ const order = {
     {
       amount: {
         currency_code: 'EUR',
-        value: '49.11',
+        value: '49.99',
       },
     },
   ],
