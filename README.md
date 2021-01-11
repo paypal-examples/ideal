@@ -8,7 +8,7 @@ This integration uses the [Paypal Radio Buttons](https://developer.paypal.com/do
 
 
 
-See a [hosted version](https://paypal-examples.github.io/ideal-paypal-payment/) of the sample or fork a copy on [codesandbox.io](https://githubbox.com/paypal-examples/ideal-paypal-payment/tree/master)
+See a [hosted version](https://paypal-examples.github.io/ideal-paypal-payment/) of the sample or fork a copy on [codesandbox.io](https://githubbox.com/paypal-examples/ideal-paypal-payment/tree/main)
 
 
 **Features:**
