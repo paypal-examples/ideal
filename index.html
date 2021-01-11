@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ideal</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&components=buttons,fields,marks&buyer-country=NL&currency=EUR"></script>
+
+  <body>
+    <h3>Enter payment method</h3>
+    <br />
+
+    <label>
+      <input
+        type="radio"
+        name="payment-option"
+        value="paypal"
+        id="paypal-radio"
+        checked
+      />
+      <span id="paypal-mark"></span>
+    </label>
+
+    <label>
+      <input
+        id="ideal-radio"
+        value="ideal"
+        name="payment-option"
+        type="radio"
+      />
+      <span id="ideal-mark"></span>
+    </label>
+
+    <div id="ideal-container"></div>
+
+    <div id="paypal-btn"></div>
+    <div id="ideal-btn"></div>
+
+
+    <script src="./index.js"></script>
+  </body>
+</html>
