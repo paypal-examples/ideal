@@ -1,10 +1,8 @@
-# Paying with iDEAL or Paypal
+# Paying with iDEAL
 
+🚧 Under Construction 🚧
 
-This integration uses the [Paypal Radio Buttons](https://developer.paypal.com/docs/checkout/integration-features/mark-flow/) to accept iDEAL payments
-
-
-⚠️🚧 **Under Construction - Not production-ready** 🚧 ⚠️
+This integration uses the JavaScript SDK to accept iDEAL payments
 
 
 
@@ -24,9 +22,28 @@ See a [hosted version](https://paypal-examples.github.io/ideal-paypal-payment/) 
 </p>
 
 ### How to run locally
+
 1. Clone the repo  `git clone git@github.com:paypal-examples/ideal-paypal-payment.git`
 2. Run `npm install`
 3. Run `npm start`
 4. Navigate to `http://127.0.0.1:8080/`
+
+
+&nbsp;
+### Intergration
+
+JavaScript SDK
+
+| **Param**   |       **Value**     |
+|----------|:-------------:|
+| client-id |    sb  (sandbox) |
+| components |  buttons,fields,marks |
+| buyer-country |    NL   |
+| currency | EUR |
+
+
+```
+<script src="https://www.paypal.com/sdk/js?client-id=sb&components=buttons,fields,marks&buyer-country=NL&currency=EUR"></script>
+```
 
 
