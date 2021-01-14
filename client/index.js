@@ -1,5 +1,9 @@
 /* eslint-disable consistent-return, new-cap, no-alert, no-console */
 
+// to handle both localhost and deployment urls, remove any filepaths eg /index.html
+const href = window.location.href;
+const MECHANT_BASE_URL = href.substring(0, href.lastIndexOf('/'));
+
 const order = {
   purchase_units: [
     {
@@ -10,8 +14,8 @@ const order = {
     }
   ],
   application_context: {
-    return_url: `${window.location.origin}/success`,
-    cancel_url: `${window.location.origin}/cancel`
+    return_url: `${MECHANT_BASE_URL}/success`,
+    cancel_url: `${MECHANT_BASE_URL}/cancel`
   }
 };
 
@@ -101,7 +105,7 @@ paypal
     style: {
       label: "pay"
     },
-    
+
     createOrder(data, actions) {
       return actions.order.create(order);
     },

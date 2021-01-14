@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node scripts/open-browser.js && node server/index.js"
   },
   "licenses": [
     {
@@ -10,5 +10,8 @@
   ],
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "react-dev-utils": "^11.0.1"
   }
 }

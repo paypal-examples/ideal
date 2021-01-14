@@ -1,6 +1,6 @@
 # Paying with iDEAL
 
-🚧 Under Construction 🚧
+🚧 Under Development 🚧
 
 This integration uses the JavaScript SDK to accept iDEAL payments
 
@@ -26,7 +26,7 @@ See a [hosted version](https://paypal-examples.github.io/ideal-paypal-payment/) 
 1. Clone the repo  `git clone git@github.com:paypal-examples/ideal-paypal-payment.git`
 2. Run `npm install`
 3. Run `npm start`
-4. Navigate to `http://127.0.0.1:8080/`
+4. Navigate to http://localhost:8080/
 
 
 &nbsp;
