@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return, new-cap, no-alert, no-console */
 
-const order = {
+var order = {
   purchase_units: [
     {
       amount: {
@@ -15,9 +15,7 @@ const order = {
   }
 };
 
-/* ----
-* Paypal
------- */
+/* Paypal */
 paypal
   .Marks({
     fundingSource: paypal.FUNDING.PAYPAL
@@ -47,9 +45,8 @@ paypal
   })
   .render("#paypal-btn");
 
-/* -----
-* iDEAL
------- */
+
+/* iDEAL  */
 paypal
   .Marks({
     fundingSource: paypal.FUNDING.IDEAL
@@ -114,7 +111,7 @@ paypal
   })
   .render("#ideal-btn");
 
-
+/* radio buttons */
 document.querySelectorAll("input[name=payment-option]").forEach((el) => {
   // handle button toggles
   el.addEventListener("change", (event) => {
