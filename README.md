@@ -1,6 +1,8 @@
 # Paying with iDEAL and PayPal
 
 
+**Please note this is a developer preview and is only available currently on sandbox**
+
 This integration uses the JavaScript SDK to accept iDEAL payments
 
 
@@ -10,7 +12,7 @@ See a [hosted version](https://demo-ideal-js-sdk-intergration.herokuapp.com/) of
 - Accept iDEAL and PayPal payments 🏦 💶
 - Localization in over 25 different languages 🌍
 - Themeable styles 
-- Handling webhook events 🪝
+- Receiving Webhook events  🪝
 
 **Demo:** 
 
@@ -46,6 +48,10 @@ these can be obtained [here](https://developer.paypal.com/docs/api-basics/sandbo
 
 5. Update your `.env` file with the `WEBHOOK_ID` value
 
+
+6. Update `client/index.html` `<script>` src `clientId` param with your `CLIENT_ID`
+
+   `https://www.paypal.com/sdk/js?client-id=<CLIENT_ID>&...`
 
 6. Start the server; in another terminal run `npm start`
 
