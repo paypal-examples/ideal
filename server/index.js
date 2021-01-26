@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const { getAccessToken } = require("./oauth");
-const { PAYPAL_API_BASE } = require("./config");
+const { PAYPAL_API_BASE, WEBHOOK_ID } = require("./config");
 
 const app = express();
 
@@ -25,29 +25,12 @@ app.get("/", (req, res) => {
 app.post("/webhook", async (req, res) => {
   const { access_token } = await getAccessToken();
 
-  const { id, event_type, resource } = req.body;
+  const { event_type, resource } = req.body;
   const orderId = resource.id;
 
   console.log(`🪝 Recieved Webhook Event`);
 
   /* verify the webhook signature */
-
-  /* ** skip ** validation while endpoint gets looked at
-  {
-    "name": "VALIDATION_ERROR",
-    "message": "Invalid request - see details",
-    "debug_id": "924631cb4acbe",
-    "details": [{
-        "field": "webhookId",
-        "value": "WH-64G99887NT8468436-37R34875Y77436504",
-        "location": "body",
-        "issue": "must match \"^[a-zA-Z0-9]+$\""
-    }],
-    "links": []
-  }
-  */
-
-  /*
   try {
     const { data } = await axios({
       url: `${PAYPAL_API_BASE}/v1/notifications/verify-webhook-signature`,
@@ -63,7 +46,7 @@ app.post("/webhook", async (req, res) => {
         cert_url: req.headers["paypal-cert-url"],
         auth_algo: req.headers["paypal-auth-algo"],
         transmission_sig: req.headers["paypal-transmission-sig"],
-        webhook_id: id,
+        webhook_id: WEBHOOK_ID,
         webhook_event: req.body,
       },
     });
@@ -76,8 +59,7 @@ app.post("/webhook", async (req, res) => {
     console.log(`⚠️  Webhook signature verification failed.`);
     return res.sendStatus(400);
   }
-  */
-
+  
   /* capture the order if approved */
   if (event_type === "CHECKOUT.ORDER.APPROVED") {
     try {

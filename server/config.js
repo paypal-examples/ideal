@@ -1,4 +1,4 @@
-const { NODE_ENV, CLIENT_ID, CLIENT_SECRET } = process.env;
+const { NODE_ENV, CLIENT_ID, CLIENT_SECRET, WEBHOOK_ID } = process.env;
 
 const isProd = NODE_ENV === "production";
 
@@ -12,4 +12,5 @@ module.exports = {
   PAYPAL_API_BASE,
   CLIENT_ID,
   CLIENT_SECRET,
+  WEBHOOK_ID
 };

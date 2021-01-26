@@ -4,24 +4,22 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const { PAYPAL_API_BASE } = require("../server/config");
+const { PAYPAL_API_BASE, CLIENT_ID, CLIENT_SECRET } = require("../server/config");
 const { getAccessToken } = require("../server/oauth");
 
 (async function () {
+  if(!CLIENT_ID || !CLIENT_SECRET){
+    console.log("missing CLIENT_ID CLIENT_SECRET from .env file")
+    return
+  }
+
   let proxyURL
 
   try {
     proxyURL = await ngrok.connect(8080);
   } catch(err){
     console.log(err)
-    console.log(`
-    ###################################################################
-    #                                                                 #
-    #  ⚠️ Uh-oh!, it looks like your network might be blocking ngrok ? #
-    #    this is required to listen to webhooks.                      #
-    #                                                                 #
-    ###################################################################
-    `);
+    console.log(`ngrok failed to connect`);
     process.exit(1);
   }
 

@@ -10,7 +10,7 @@ See a [hosted version](https://demo-ideal-js-sdk-intergration.herokuapp.com/) of
 - Accept iDEAL and Paypal payments 🏦 💶
 - Localization in over 25 different languages 🌍
 - Themeable styles
-
+- Handling webhook events
 
 **Demo:** 
 
@@ -18,24 +18,40 @@ See a [hosted version](https://demo-ideal-js-sdk-intergration.herokuapp.com/) of
   <img src="./ideal-paypal-payment.gif" alt="Collecting an iDEAL payment">
 </p>
 
-### How to run locally
+## How to run locally
 
-Copy the .env.example file into a file named .env
+This server example implementation uses Node.js
+
+1. Clone the repo  `git clone git@github.com:paypal-examples/ideal-paypal-payment.git`
+
+2. Copy the .env.example file into a file named .env
 
 ```
 cp .env.example .env
 ```
 
-and configuring your .env config file with your Paypal API keys.
+and configuring your `.env` config file with your Paypal Sandbox
+`CLIENT_ID` and `CLIENT_SECRET`
 
-1. Clone the repo  `git clone git@github.com:paypal-examples/ideal-paypal-payment.git`
-2. Run `npm install`
-3. Run `npm start`
-4. Navigate to `http://localhost:8080/`
+these can be obtained here https://developer.paypal.com/docs/api-basics/sandbox/credentials/
+
+3. Run `npm install`
+
+
+4. Run the local webhook server `npm run webhook-server` this will display a webhookId, 
+
+
+5. please update your `.env` file with the `WEBHOOK_ID` value
+
+
+6. Start the server; in another terminal run `npm start`
+
+
+7. Navigate to http://localhost:8080/
 
 
 &nbsp;
-### Intergration
+## Intergration
 
 JavaScript SDK
 
@@ -52,3 +68,6 @@ JavaScript SDK
 ```
 
 
+## Issue Reporting
+
+If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://www.paypal.com/il/webapps/mpp/security/general-reportingsecurityissues?locale.x=en_IL) details the procedure for disclosing security issues.
