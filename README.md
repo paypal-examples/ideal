@@ -1,4 +1,4 @@
-# Paying with iDEAL
+# Paying with iDEAL and PayPal
 
 
 This integration uses the JavaScript SDK to accept iDEAL payments
@@ -7,10 +7,10 @@ This integration uses the JavaScript SDK to accept iDEAL payments
 See a [hosted version](https://demo-ideal-js-sdk-intergration.herokuapp.com/) of the sample
 
 **Features:**
-- Accept iDEAL and Paypal payments 🏦 💶
+- Accept iDEAL and PayPal payments 🏦 💶
 - Localization in over 25 different languages 🌍
-- Themeable styles
-- Handling webhook events
+- Themeable styles 
+- Handling webhook events 🪝
 
 **Demo:** 
 
@@ -20,28 +20,31 @@ See a [hosted version](https://demo-ideal-js-sdk-intergration.herokuapp.com/) of
 
 ## How to run locally
 
-This server example implementation uses Node.js
+This server example implementation uses Node.js, and the client side uses a radio button markup to display payment options.
 
-1. Clone the repo  `git clone git@github.com:paypal-examples/ideal-paypal-payment.git`
+1. Clone the repo  `git clone git@github.com:paypal-examples/ideal-paypal-payment-js-sdk.git`
 
-2. Copy the .env.example file into a file named .env
+2. Run `npm install`
+
+
+3. Copy the .env.example file into a file named .env
 
 ```
 cp .env.example .env
 ```
 
-and configuring your `.env` config file with your Paypal Sandbox
+and configure your `.env` config file with your Paypal Sandbox
 `CLIENT_ID` and `CLIENT_SECRET`
 
-these can be obtained here https://developer.paypal.com/docs/api-basics/sandbox/credentials/
-
-3. Run `npm install`
+these can be obtained [here](https://developer.paypal.com/docs/api-basics/sandbox/credentials/)
 
 
-4. Run the local webhook server `npm run webhook-server` this will display a webhookId, 
+(If you would like to run the example without configuring webhooks you can skip 4 & 5)
+
+4.  Run the local webhook server `npm run webhook-server` take note of the webhookId 
 
 
-5. please update your `.env` file with the `WEBHOOK_ID` value
+5. Update your `.env` file with the `WEBHOOK_ID` value
 
 
 6. Start the server; in another terminal run `npm start`
@@ -51,22 +54,147 @@ these can be obtained here https://developer.paypal.com/docs/api-basics/sandbox/
 
 
 &nbsp;
-## Intergration
 
-JavaScript SDK
+## Intergration Guide
+
+
+**Loading the JavaScript SDK**
+
+
+The sdk requires the following query params to be configured when loaded to accept ideal payments
 
 | **Param**   |       **Value**     |
 |----------|:-------------:|
-| client-id |    sb  (sandbox) |
+| client-id |   PayPal ClientId  |
 | components |  buttons,fields,marks |
 | buyer-country |    NL   |
 | currency | EUR |
 
+Example:
 
 ```
 <script src="https://www.paypal.com/sdk/js?client-id=<PAYPAL_CLIENT_ID>&components=buttons,fields,marks&buyer-country=NL&currency=EUR"></script>
 ```
 
+### Components
+
+**Mark**
+
+Use the following iDEAL mark when you show iDEAL as a payment option:
+
+ <img src="./mark.png" width="60px" alt="iDeal Mark">
+  
+```
+paypal
+  .Marks({
+    fundingSource: paypal.FUNDING.IDEAL
+  })
+  .render("#ideal-mark");
+```
+
+**Fields**
+
+Render the fields to capture required customer information.
+
+It gives the option to prefil the customer name field if this is already obtained via `fields.name.value` property.
+
+<img src="./fields.png" width="540px" alt="iDeal Fields">
+
+```
+paypal
+  .Fields({
+    fundingSource: paypal.FUNDING.IDEAL,
+	  style: { /* omitted for brevity */ },
+    fields: {
+      name: {
+        value: ""
+      }
+    }
+  })
+  .render("#ideal-fields");
+```
+(Optional)  Fields style object:
+
+If you would like to customize the visual apperance of the fields
+```
+{
+  base: {
+    backgroundColor: "white",
+    color: "black",
+    fontSize: "16px",
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    lineHeight: "1.4",
+    letterSpacing: "0.3"
+  },
+  input: {
+    backgroundColor: "white",
+    fontSize: "16px",
+    color: "#333",
+    borderColor: "#dbdbdb",
+    borderRadius: "4px",
+    borderWidth: "1px",
+    padding: "1rem"
+  },
+  invalid: {
+    color: "red"
+  },
+  active: {
+    color: "black"
+  }
+}
+```
+
+**Button**
+
+The button orchestrates communication with the fields, order creation and handles in context payment experience.
+
+ <img src="./button.png"  width="600px" alt="iDeal Button">
+
+```
+paypal
+  .Buttons({
+    fundingSource: paypal.FUNDING.IDEAL,
+    style: {
+      label: "pay"
+    },
+    createOrder(data, actions) {
+      /* see order payload info */
+      return actions.order.create(order);
+    },
+    onApprove(data, actions) {
+       console.log("order approved")
+    },
+    onCancel(data, actions) {
+      console.log("onCancel called");
+    },
+    onError(err) {
+      console.error(err);
+    }
+  })
+  .render("#ideal-btn");
+  ```
+
+##### Order Payload:
+
+Please note iDEAL orders are required to be created in `EUR`
+```
+{
+  purchase_units: [
+    {
+      amount: {
+        currency_code: "EUR",
+        value: "49.99"
+      }
+    }
+  ],
+  application_context: {
+    return_url: `${window.location.origin}/success`,
+    cancel_url: `${window.location.origin}/cancel`
+  }
+}
+```
+
+&nbsp;
 
 ## Issue Reporting
 
