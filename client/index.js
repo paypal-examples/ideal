@@ -26,7 +26,8 @@ paypal
   .Buttons({
     fundingSource: paypal.FUNDING.PAYPAL,
     style: {
-      label: "pay"
+      label: "pay",
+      color: "silver"
     },
     createOrder(data, actions) {
       return actions.order.create(order);
@@ -116,7 +117,6 @@ document.querySelectorAll("input[name=payment-option]").forEach((el) => {
   // handle button toggles
   el.addEventListener("change", (event) => {
     switch (event.target.value) {
-      // Hide / display elements
       case "paypal":
         document.body.querySelector("#ideal-container").style.display = "none";
         document.getElementById("ideal-btn").style.display = "none";

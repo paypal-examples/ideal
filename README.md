@@ -22,7 +22,7 @@ See a [hosted version](https://demo-ideal-js-sdk-intergration.herokuapp.com/) of
 
 ## How to run locally
 
-This server example implementation uses Node.js, and the client side uses a radio button markup to display payment options.
+The example server implementation uses Node.js.
 
 1. Clone the repo  `git clone git@github.com:paypal-examples/ideal-paypal-payment-js-sdk.git`
 
@@ -82,6 +82,26 @@ Example:
 <script src="https://www.paypal.com/sdk/js?client-id=<PAYPAL_CLIENT_ID>&components=buttons,fields,marks&buyer-country=NL&currency=EUR"></script>
 ```
 
+##### Order
+
+Please note iDEAL orders are required to be created in `EUR`
+```
+{
+  purchase_units: [
+    {
+      amount: {
+        currency_code: "EUR",
+        value: "49.99"
+      }
+    }
+  ],
+  application_context: {
+    return_url: `${window.location.origin}/success`,
+    cancel_url: `${window.location.origin}/cancel`
+  }
+}
+```
+
 ### Components
 
 **Mark**
@@ -110,18 +130,17 @@ It gives the option to prefil the customer name field if this is already obtaine
 paypal
   .Fields({
     fundingSource: paypal.FUNDING.IDEAL,
-	  style: { /* omitted for brevity */ },
+    style: {},
     fields: {
       name: {
-        value: ""
-      }
-    }
+        value: "",
+      },
+    },
   })
   .render("#ideal-fields");
-```
-(Optional)  Fields style object:
 
-If you would like to customize the visual apperance of the fields
+```
+Style object:
 ```
 {
   base: {
@@ -152,9 +171,8 @@ If you would like to customize the visual apperance of the fields
 
 **Button**
 
-The button orchestrates communication with the fields, order creation and handles in context payment experience.
 
- <img src="./button.png"  width="600px" alt="iDeal Button">
+ <img src="./button.png"  width="540px" alt="iDeal Button">
 
 ```
 paypal
@@ -180,28 +198,7 @@ paypal
   .render("#ideal-btn");
   ```
 
-##### Order Payload:
 
-Please note iDEAL orders are required to be created in `EUR`
-```
-{
-  purchase_units: [
-    {
-      amount: {
-        currency_code: "EUR",
-        value: "49.99"
-      }
-    }
-  ],
-  application_context: {
-    return_url: `${window.location.origin}/success`,
-    cancel_url: `${window.location.origin}/cancel`
-  }
-}
-```
 
 &nbsp;
 
-## Issue Reporting
-
-If you have found a bug or if you have a feature request, please report them at this repository issues section. Please do not report security vulnerabilities on the public GitHub issue tracker. The [Responsible Disclosure Program](https://www.paypal.com/il/webapps/mpp/security/general-reportingsecurityissues?locale.x=en_IL) details the procedure for disclosing security issues.
