@@ -2,11 +2,12 @@ const express = require("express");
 const { resolve } = require("path");
 const axios = require("axios");
 const dotenv = require("dotenv");
+const open = require('open');
 
 dotenv.config();
 
 const { getAccessToken } = require("./oauth");
-const { PAYPAL_API_BASE, WEBHOOK_ID } = require("./config");
+const { PAYPAL_API_BASE, WEBHOOK_ID, isProd } = require("./config");
 
 const app = express();
 
@@ -83,6 +84,9 @@ app.post("/webhook", async (req, res) => {
   res.sendStatus(200);
 });
 
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(`Example app listening at http://localhost:${port}`);
+  if(!isProd){
+    await open('http://localhost:8080');
+  }
 });

@@ -90,6 +90,8 @@ paypal
   })
   .render("#ideal-container");
 
+
+
 paypal
   .Buttons({
     fundingSource: paypal.FUNDING.IDEAL,
@@ -101,6 +103,7 @@ paypal
       return actions.order.create(order);
     },
     onApprove(data, actions) {
+      swal("Order Authorized!", `Order Id: `, data.id);
       // order capture is handled on the sever after recieving webhooks authorize event
     },
     onCancel(data, actions) {

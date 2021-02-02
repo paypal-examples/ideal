@@ -1,16 +1,18 @@
 const ngrok = require("ngrok");
 const axios = require("axios");
 const dotenv = require("dotenv");
+const chalk = require("chalk");
 
 dotenv.config();
 
 const { PAYPAL_API_BASE, CLIENT_ID, CLIENT_SECRET } = require("../server/config");
+
 const { getAccessToken } = require("../server/oauth");
 
 (async function () {
   if(!CLIENT_ID || !CLIENT_SECRET){
-    console.log("missing CLIENT_ID CLIENT_SECRET from .env file")
-    return
+    console.log("[Error] missing CLIENT_ID, CLIENT_SECRET from .env file")
+    process.exit(1);
   }
 
   let proxyURL
@@ -19,7 +21,7 @@ const { getAccessToken } = require("../server/oauth");
     proxyURL = await ngrok.connect(8080);
   } catch(err){
     console.log(err)
-    console.log(`ngrok failed to connect`);
+    console.log(`[Error] ngrok failed to connect`);
     process.exit(1);
   }
 
@@ -44,7 +46,12 @@ const { getAccessToken } = require("../server/oauth");
       },
     });
 
-    formatWebhookCreateResponse(data);
+    console.log(`${chalk.blue("Forwarding webhooks to http://localhost:8080/webhook")} `, "\n", 
+    `webhooks can take upto 5 min to process after authorization`, "\n", 
+     "\n", "\n",
+    `${chalk.yellow("Webhook Id:")} ${data.id}`, "\n",
+    "(^C to quit)",
+    )
 
     // on terminal shutdown - delete the webhook
     process.on("SIGINT", async () => {
@@ -60,27 +67,9 @@ const { getAccessToken } = require("../server/oauth");
         },
       });
 
-      console.log("Webhook deleted - id: %s", id);
+      process.exit(1);
     });
   } catch (err) {
     console.error(err);
   }
 })();
-
-function formatWebhookCreateResponse({ id, url, event_types }) {
-
-console.log(`
-✅ Webhook Proxy Running
-Webhook ID: 
-${id}
-Webhook External URL: 
-${url}
-Forwarding: 
-${url} -> http://localhost:8080/webhook
-Subscribed Events: 
-${event_types.map((evt) => `"${evt.name}", `)}
-Listening for events:
-webhooks can take upto 5 min to process after authorization 
-(^C to quit)
-`);
-}
