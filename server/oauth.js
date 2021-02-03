@@ -1,12 +1,18 @@
 const axios = require("axios");
 
-const { PAYPAL_API_BASE, CLIENT_ID, CLIENT_SECRET } = require("./config");
+const {
+  CLIENT_ID,
+  CLIENT_SECRET,
+  API_BASE,
+} = require("./config")
 
 async function getAccessToken() {
-  const credentials = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
+  const credentials = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString(
+    "base64"
+  );
 
   const { data } = await axios({
-    url: `${PAYPAL_API_BASE}/v1/oauth2/token`,
+    url: `${API_BASE}/v1/oauth2/token`,
     method: "post",
     headers: {
       Accept: "application/json",

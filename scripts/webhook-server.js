@@ -5,7 +5,7 @@ const chalk = require("chalk");
 
 dotenv.config();
 
-const { PAYPAL_API_BASE, CLIENT_ID, CLIENT_SECRET } = require("../server/config");
+const { PAYPAL_API_BASE, CLIENT_ID, CLIENT_SECRET } = process.env
 
 const { getAccessToken } = require("../server/oauth");
 
