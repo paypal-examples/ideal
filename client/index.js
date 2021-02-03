@@ -5,20 +5,20 @@ var order = {
     {
       amount: {
         currency_code: "EUR",
-        value: "49.99"
-      }
-    }
+        value: "49.99",
+      },
+    },
   ],
   application_context: {
     return_url: `${window.location.origin}/success`,
-    cancel_url: `${window.location.origin}/cancel`
-  }
+    cancel_url: `${window.location.origin}/cancel`,
+  },
 };
 
 /* Paypal */
 paypal
   .Marks({
-    fundingSource: paypal.FUNDING.PAYPAL
+    fundingSource: paypal.FUNDING.PAYPAL,
   })
   .render("#paypal-mark");
 
@@ -27,7 +27,7 @@ paypal
     fundingSource: paypal.FUNDING.PAYPAL,
     style: {
       label: "pay",
-      color: "silver"
+      color: "silver",
     },
     createOrder(data, actions) {
       return actions.order.create(order);
@@ -42,15 +42,14 @@ paypal
     },
     onError(err) {
       console.error(err);
-    }
+    },
   })
   .render("#paypal-btn");
-
 
 /* iDEAL  */
 paypal
   .Marks({
-    fundingSource: paypal.FUNDING.IDEAL
+    fundingSource: paypal.FUNDING.IDEAL,
   })
   .render("#ideal-mark");
 
@@ -64,7 +63,7 @@ paypal
         fontSize: "16px",
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         lineHeight: "1.4",
-        letterSpacing: "0.3"
+        letterSpacing: "0.3",
       },
       input: {
         backgroundColor: "white",
@@ -73,31 +72,29 @@ paypal
         borderColor: "#dbdbdb",
         borderRadius: "4px",
         borderWidth: "1px",
-        padding: "1rem"
+        padding: "1rem",
       },
       invalid: {
-        color: "red"
+        color: "red",
       },
       active: {
-        color: "black"
-      }
+        color: "black",
+      },
     },
     fields: {
       name: {
-        value: ""
-      }
-    }
+        value: "",
+      },
+    },
   })
-  .render("#ideal-container");
-
-
+  .render("#ideal-fields");
 
 paypal
   .Buttons({
     fundingSource: paypal.FUNDING.IDEAL,
     upgradeLSAT: true,
     style: {
-      label: "pay"
+      label: "pay",
     },
     createOrder(data, actions) {
       return actions.order.create(order);
@@ -111,9 +108,13 @@ paypal
     },
     onError(err) {
       console.error(err);
-    }
+    },
   })
   .render("#ideal-btn");
+
+var idealFields = document.body.querySelector("#ideal-fields");
+var idealBtn = document.getElementById("ideal-btn");
+var paypalBtn = document.body.querySelector("#paypal-btn");
 
 /* radio buttons */
 document.querySelectorAll("input[name=payment-option]").forEach((el) => {
@@ -121,19 +122,19 @@ document.querySelectorAll("input[name=payment-option]").forEach((el) => {
   el.addEventListener("change", (event) => {
     switch (event.target.value) {
       case "paypal":
-        document.body.querySelector("#ideal-container").style.display = "none";
-        document.getElementById("ideal-btn").style.display = "none";
-        document.body.querySelector("#paypal-btn").style.display = "block";
+        idealFields.style.display = "none";
+        idealBtn.style.display = "none";
+        paypalBtn.style.display = "block";
         break;
       case "ideal":
-        document.body.querySelector("#ideal-container").style.display = "block";
-        document.getElementById("ideal-btn").style.display = "block";
-        document.body.querySelector("#paypal-btn").style.display = "none";
+        idealFields.style.display = "block";
+        idealBtn.style.display = "block";
+        paypalBtn.style.display = "none";
         break;
       case "sofort":
-        document.body.querySelector("#ideal-container").style.display = "none";
-        document.getElementById("ideal-btn").style.display = "none";
-        document.body.querySelector("#paypal-btn").style.display = "none";
+        idealFields.style.display = "none";
+        idealBtn.style.display = "none";
+        paypalBtn.style.display = "none";
         break;
       default:
         break;
@@ -141,7 +142,5 @@ document.querySelectorAll("input[name=payment-option]").forEach((el) => {
   });
 });
 
-document.body.querySelector("#ideal-container").style.display = "none";
-document.getElementById("ideal-btn").style.display = "none";
-
-
+idealFields.style.display = "none";
+idealBtn.style.display = "none";
