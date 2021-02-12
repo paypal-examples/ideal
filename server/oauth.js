@@ -1,10 +1,13 @@
 const axios = require("axios");
 
 const {
-  CLIENT_ID,
-  CLIENT_SECRET,
   API_BASE,
 } = require("./config")
+
+const {
+  CLIENT_ID,
+  CLIENT_SECRET,
+} = process.env
 
 async function getAccessToken() {
   const credentials = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString(

@@ -100,8 +100,14 @@ paypal
       return actions.order.create(order);
     },
     onApprove(data, actions) {
-      swal("Order Authorized!", `Order Id: `, data.id);
-      // order capture is handled on the sever after recieving webhooks authorize event
+      fetch(`/capture/${data.orderID}`, {
+        method: "post",
+      })
+        .then((res) => res.json())
+        .then(({ id }) => {
+          swal("Order Captured!", `Order Id: ${id}`, "success");
+        })
+        .catch(console.error);
     },
     onCancel(data, actions) {
       console.log("onCancel called");
