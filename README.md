@@ -72,14 +72,14 @@ The sdk requires the following query params to be configured when loaded to acce
 | **Param**   |       **Value**     |
 |----------|:-------------:|
 | client-id |   PayPal ClientId  |
-| components |  buttons,fields,marks |
-| buyer-country |    NL   |
+| components |  buttons,fields,marks,funding-eligibility |
+| enable-funding |   ideal   |
 | currency | EUR |
 
 Example:
 
 ```
-<script src="https://www.paypal.com/sdk/js?client-id=<PAYPAL_CLIENT_ID>&components=buttons,fields,marks&buyer-country=NL&currency=EUR"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=<CLIENT_ID>&components=buttons,fields,marks,funding-eligibility&enable-funding=ideal&currency=EUR"></script>
 ```
 
 ##### Order
