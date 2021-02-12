@@ -17,7 +17,7 @@ See a [hosted version](https://demo-ideal-js-sdk-intergration.herokuapp.com/) of
 **Demo:** 
 
 <p align="center">
-  <img src="./ideal-paypal-payment.gif" alt="Collecting an iDEAL payment">
+  <img src="./assets/ideal-paypal-payment.gif" alt="Collecting an iDEAL payment">
 </p>
 
 ## How to run locally
@@ -108,7 +108,7 @@ Please note iDEAL orders are required to be created in `EUR`
 
 Use the following iDEAL mark when you show iDEAL as a payment option:
 
- <img src="./mark.png" width="60px" alt="iDeal Mark">
+ <img src="./assets/mark.png" width="60px" alt="iDeal Mark">
   
 ```
 paypal
@@ -124,7 +124,7 @@ Render the fields to capture required customer information.
 
 It gives the option to prefil the customer name field if this is already obtained via `fields.name.value` property.
 
-<img src="./fields.png" width="540px" alt="iDeal Fields">
+<img src="./assets/fields.png" width="540px" alt="iDeal Fields">
 
 ```
 paypal
@@ -172,7 +172,7 @@ Style object:
 **Button**
 
 
- <img src="./button.png"  width="540px" alt="iDeal Button">
+ <img src="./assets/button.png"  width="540px" alt="iDeal Button">
 
 ```
 paypal
