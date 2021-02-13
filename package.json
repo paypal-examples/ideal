@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "node server/index.js",
-    "webhook-server": "node scripts/webhook-server.js"
+    "webhook-proxy": "node scripts/webhook-proxy.js"
   },
   "licenses": [
     {

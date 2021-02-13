@@ -1,7 +1,7 @@
 # Paying with iDEAL and PayPal
 
 
-**Please note this is in development and is currently only available  on sandbox**
+**Please note this is under development and is currently only available  on sandbox**
 
 This integration uses the JavaScript SDK to accept iDEAL payments
 
@@ -9,10 +9,10 @@ This integration uses the JavaScript SDK to accept iDEAL payments
 See a [hosted version](https://demo-ideal-js-sdk-intergration.herokuapp.com/) of the sample
 
 **Features:**
-- Accept iDEAL and PayPal payments 🏦 💶
-- Localization in over 25 different languages 🌍
-- Themeable styles 
-- Receiving Webhook events  🪝
+- Accept iDEAL or PayPal payments 🏦 💶
+- Localization in over 35 different languages 🌍
+- Customizable styles 
+- Handling Webhook events  ⚓️
 
 **Demo:** 
 
@@ -22,41 +22,46 @@ See a [hosted version](https://demo-ideal-js-sdk-intergration.herokuapp.com/) of
 
 ## How to run locally
 
-The example server implementation uses Node.js.
+Node.js.
 
 1. Clone the repo  `git clone git@github.com:paypal-examples/ideal-paypal-payment-js-sdk.git`
 
 2. Run `npm install`
 
+#### Config
 
-3. Copy the .env.example file into a file named .env
+
+1. Copy the .env.example file into a file named .env
 
 ```
 cp .env.example .env
 ```
 
-and configure your `.env` config file with your Paypal Sandbox
+configure your `.env` config file with your Paypal (Sandbox)
 `CLIENT_ID` and `CLIENT_SECRET`
 
 these can be obtained [here](https://developer.paypal.com/docs/api-basics/sandbox/credentials/)
 
-
-(If you would like to run the example without configuring webhooks you can skip 4 & 5)
-
-4.  Run the local webhook server `npm run webhook-server` take note of the webhookId 
-
-
-5. Update your `.env` file with the `WEBHOOK_ID` value
-
-
-6. Update `client/index.html` `<script>` src `clientId` param with your `CLIENT_ID`
+2. Update `client/index.html` `<script>` `clientId` param `CLIENT_ID`
 
    `https://www.paypal.com/sdk/js?client-id=<CLIENT_ID>&...`
+   
 
-6. Start the server; in another terminal run `npm start`
+#### Sever
+If you would like to run the example without configuring webhooks you can now run
+`npm start`.
+
+#### Listen to Webhooks
+
+1.  Run `npm run webhook-proxy` take note of the `webhookId`.
 
 
-7. Navigate to http://localhost:8080/
+2. Update your `.env` file `WEBHOOK_ID` value.
+
+
+
+3. Start the server, in another terminal run `npm start`
+
 
 
 &nbsp;
@@ -67,7 +72,7 @@ these can be obtained [here](https://developer.paypal.com/docs/api-basics/sandbo
 **Loading the JavaScript SDK**
 
 
-The sdk requires the following query params to be configured when loaded to accept ideal payments
+The sdk requires the following query params to be configured on the script src to accept ideal payments.
 
 | **Param**   |       **Value**     |
 |----------|:-------------:|
