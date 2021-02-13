@@ -105,12 +105,13 @@ paypal
       })
         .then((res) => res.json())
         .then(({ id }) => {
-          swal("Order Captured!", `id: ${id}`, "success");
+          swal("Order Captured!", `ID: ${id}`, "success");
         })
         .catch(console.error);
     },
     onCancel(data, actions) {
-      console.log("onCancel called");
+      console.log(data)
+      swal("Order Canceled", `ID: ${data.orderID}`, "warning");
     },
     onError(err) {
       console.error(err);
