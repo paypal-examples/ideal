@@ -105,7 +105,7 @@ paypal
       })
         .then((res) => res.json())
         .then(({ id }) => {
-          swal("Order Captured!", `Order Id: ${id}`, "success");
+          swal("Order Captured!", `id: ${id}`, "success");
         })
         .catch(console.error);
     },
