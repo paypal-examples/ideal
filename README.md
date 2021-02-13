@@ -87,7 +87,7 @@ Example:
 <script src="https://www.paypal.com/sdk/js?client-id=<CLIENT_ID>&components=buttons,fields,marks,funding-eligibility&enable-funding=ideal&currency=EUR"></script>
 ```
 
-##### Order
+##### Order Payload
 
 Please note iDEAL orders are required to be created in `EUR`
 ```
