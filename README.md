@@ -47,7 +47,7 @@ these can be obtained [here](https://developer.paypal.com/docs/api-basics/sandbo
    `https://www.paypal.com/sdk/js?client-id=<CLIENT_ID>&...`
    
 
-#### Sever
+#### Server
 If you would like to run the example without configuring webhooks you can now run
 `npm start`.
 
@@ -66,7 +66,7 @@ If you would like to run the example without configuring webhooks you can now ru
 
 &nbsp;
 
-## Intergration Guide
+## Integration Guide
 
 
 **Loading the JavaScript SDK**

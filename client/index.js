@@ -104,8 +104,8 @@ paypal
         method: "post",
       })
         .then((res) => res.json())
-        .then(({ id }) => {
-          swal("Order Captured!", `ID: ${id}`, "success");
+        .then((data) => {
+          swal("Order Captured!", `ID: ${data.id}`, "success");
         })
         .catch(console.error);
     },
@@ -136,11 +136,6 @@ document.querySelectorAll("input[name=payment-option]").forEach((el) => {
       case "ideal":
         idealFields.style.display = "block";
         idealBtn.style.display = "block";
-        paypalBtn.style.display = "none";
-        break;
-      case "sofort":
-        idealFields.style.display = "none";
-        idealBtn.style.display = "none";
         paypalBtn.style.display = "none";
         break;
       default:
