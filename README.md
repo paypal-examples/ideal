@@ -108,8 +108,6 @@ Please note iDEAL orders are required to be created in `EUR`
 
 **Mark**
 
-Use the following iDEAL mark when you show iDEAL as a payment option:
-
  <img src="./assets/mark.png" width="60px" alt="iDeal Mark">
   
 ```
