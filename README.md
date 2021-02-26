@@ -19,34 +19,27 @@ See a [hosted version](https://demo-ideal-js-sdk-intergration.herokuapp.com/) of
 
 ## How to run locally
 
-Node.js.
-
 1. Clone the repo  `git clone git@github.com:paypal-examples/ideal-paypal-payment-js-sdk.git`
 
-2. Run `npm install`
 
-#### Config
-
-
-1. Copy the .env.example file into a file named .env
-
+2. Copy the .env.example file into a file named .env
 ```
 cp .env.example .env
 ```
 
-configure your `.env` config file with your Paypal (Sandbox)
+3. Run `npm install`
+
+
+4. configure your `.env` config file with your Paypal (Sandbox)
 `CLIENT_ID` and `CLIENT_SECRET`
 
 these can be obtained [here](https://developer.paypal.com/docs/api-basics/sandbox/credentials/)
 
-2. Update `client/index.html` `<script>` `clientId` param `CLIENT_ID`
+5. Update `client/index.html` script src `clientId` param
 
    `https://www.paypal.com/sdk/js?client-id=<CLIENT_ID>&...`
    
-
-#### Server
-If you would like to run the example without configuring webhooks you can now run
-`npm start`.
+6. `npm start`.
 
 #### Listen to Webhooks
 
@@ -56,14 +49,11 @@ If you would like to run the example without configuring webhooks you can now ru
 2. Update your `.env` file `WEBHOOK_ID` value.
 
 
-
-3. Start the server, in another terminal run `npm start`
+3. Restart the server `npm start`
 
 
 
 &nbsp;
-
-## Integration Guide
 
 
 **Loading the JavaScript SDK**
@@ -104,7 +94,7 @@ Please note iDEAL orders are required to be created in `EUR`
 }
 ```
 
-### Components
+#### Components
 
 **Mark**
 
@@ -140,7 +130,7 @@ paypal
   .render("#ideal-fields");
 
 ```
-Style object:
+**Style object:**
 ```
 {
   base: {
