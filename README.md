@@ -1,8 +1,5 @@
 # Paying with iDEAL and PayPal
 
-
-**Please note this is under development and is currently only available  on sandbox**
-
 This integration uses the JavaScript SDK to accept iDEAL payments
 
 
