@@ -105,7 +105,7 @@ paypal
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(JSON.stringify(data, null, 4))
+          console.log(data)
           swal("Order Captured!", `Id: ${data.id}, ${Object.keys(data.payment_source)[0]}, ${data.purchase_units[0].payments.captures[0].amount.currency_code} ${data.purchase_units[0].payments.captures[0].amount.value}`, "success");
         })
         .catch(console.error);
@@ -126,7 +126,6 @@ var paypalBtn = document.body.querySelector("#paypal-btn");
 
 /* radio buttons */
 document.querySelectorAll("input[name=payment-option]").forEach((el) => {
-  // handle button toggles
   el.addEventListener("change", (event) => {
     switch (event.target.value) {
       case "paypal":
