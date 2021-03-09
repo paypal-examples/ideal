@@ -3,7 +3,7 @@
 This integration uses the JavaScript SDK to accept iDEAL payments
 
 
-See a [hosted version](https://demo-ideal-js-sdk-intergration.herokuapp.com/) of the sample
+See a [hosted version](https://paypal-ideal-js-sdk.herokuapp.com/) of the sample
 
 **Features:**
 - Accept iDEAL or PayPal payments 🏦 💶
