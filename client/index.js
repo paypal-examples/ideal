@@ -8,11 +8,7 @@ var order = {
         value: "49.99",
       },
     },
-  ],
-  application_context: {
-    return_url: `${window.location.origin}/success`,
-    cancel_url: `${window.location.origin}/cancel`,
-  },
+  ]
 };
 
 /* Paypal */
@@ -56,31 +52,7 @@ paypal
 paypal
   .Fields({
     fundingSource: paypal.FUNDING.IDEAL,
-    style: {
-      base: {
-        backgroundColor: "white",
-        color: "black",
-        fontSize: "16px",
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        lineHeight: "1.4",
-        letterSpacing: "0.3",
-      },
-      input: {
-        backgroundColor: "white",
-        fontSize: "16px",
-        color: "#333",
-        borderColor: "#dbdbdb",
-        borderRadius: "4px",
-        borderWidth: "1px",
-        padding: "1rem",
-      },
-      invalid: {
-        color: "red",
-      },
-      active: {
-        color: "black",
-      },
-    },
+    style: {},
     fields: {
       name: {
         value: "",
@@ -91,8 +63,8 @@ paypal
 
 paypal
   .Buttons({
-    fundingSource: paypal.FUNDING.IDEAL,
     upgradeLSAT: true,
+    fundingSource: paypal.FUNDING.IDEAL,
     style: {
       label: "pay",
     },
@@ -105,13 +77,19 @@ paypal
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
-          swal("Order Captured!", `Id: ${data.id}, ${Object.keys(data.payment_source)[0]}, ${data.purchase_units[0].payments.captures[0].amount.currency_code} ${data.purchase_units[0].payments.captures[0].amount.value}`, "success");
+          console.log(data);
+          swal(
+            "Order Captured!",
+            `Id: ${data.id}, ${Object.keys(data.payment_source)[0]}, ${
+              data.purchase_units[0].payments.captures[0].amount.currency_code
+            } ${data.purchase_units[0].payments.captures[0].amount.value}`,
+            "success"
+          );
         })
         .catch(console.error);
     },
     onCancel(data, actions) {
-      console.log(data)
+      console.log(data);
       swal("Order Canceled", `ID: ${data.orderID}`, "warning");
     },
     onError(err) {
@@ -123,6 +101,10 @@ paypal
 var idealFields = document.body.querySelector("#ideal-fields");
 var idealBtn = document.getElementById("ideal-btn");
 var paypalBtn = document.body.querySelector("#paypal-btn");
+var idealRadioBtn = document.getElementById("ideal-radio")
+
+paypalBtn.style.display = "none";
+idealRadioBtn.checked = true;
 
 /* radio buttons */
 document.querySelectorAll("input[name=payment-option]").forEach((el) => {
@@ -144,5 +126,4 @@ document.querySelectorAll("input[name=payment-option]").forEach((el) => {
   });
 });
 
-idealFields.style.display = "none";
-idealBtn.style.display = "none";
+
