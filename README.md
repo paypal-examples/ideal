@@ -1,4 +1,9 @@
-# Paying with iDEAL and PayPal
+# Paying with iDEAL or PayPal on the web
+
+<p>
+<img src="https://www.paypalobjects.com/images/checkout/latinum/Altpay_logo_iDEAL.svg" alt="iDEAL Logo">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" width="90px" alt="PayPal Logo">
+</p>
 
 This integration uses the JavaScript SDK to accept iDEAL payments
 
@@ -108,7 +113,7 @@ paypal
   .render("#ideal-mark");
 ```
 
-**Fields**
+**PaymentFields**
 
 Render the fields to capture required customer information.
 
@@ -118,7 +123,7 @@ It gives the option to prefil the customer name field if this is already obtaine
 
 ```
 paypal
-  .Fields({
+  .PaymentFields({
     fundingSource: paypal.FUNDING.IDEAL,
     style: {},
     fields: {
@@ -132,7 +137,7 @@ paypal
 ```
 **Style object:**
 ```
-{
+const style = {
   base: {
     backgroundColor: "white",
     color: "black",
