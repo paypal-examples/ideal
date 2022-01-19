@@ -8,7 +8,7 @@ var order = {
         value: "49.99",
       },
     },
-  ]
+  ],
 };
 
 /* Paypal */
@@ -52,7 +52,37 @@ paypal
 paypal
   .PaymentFields({
     fundingSource: paypal.FUNDING.IDEAL,
-    style: {},
+    style: {
+      variables: {
+        fontFamily: "'Helvetica Neue', Arial, sans-serif",
+        fontSizeBase: "0.9375rem",
+        fontSizeSm: "0.93rem",
+        fontSizeM: "0.93rem",
+        fontSizeLg: "1.0625rem",
+        textColor: "#2c2e2f",
+        colorTextPlaceholder: "#2c2e2f",
+        colorBackground: "#fff",
+        colorInfo: "#0dcaf0",
+        colorDanger: "#d20000",
+        borderRadius: "0.2rem",
+        borderColor: "#dfe1e5",
+        borderWidth: "1px",
+        borderFocusColor: "black",
+        spacingUnit: "10px",
+      },
+      rules: {
+        ".Input": {},
+        ".Input:hover": {},
+        ".Input:focus": {
+        },
+        ".Input:active": {},
+        ".Input--invalid": {},
+        ".Label": {},
+        ".Error": {
+          marginTop: '2px',
+        },
+      },
+    },
     fields: {
       name: {
         value: "",
@@ -119,5 +149,3 @@ document.querySelectorAll("input[name=payment-option]").forEach((el) => {
     }
   });
 });
-
-
