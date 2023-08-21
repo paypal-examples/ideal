@@ -36,13 +36,13 @@ cp .env.example .env
 
 
 4. configure your `.env` config file with your Paypal (Sandbox)
-`CLIENT_ID` and `CLIENT_SECRET`
+`PAYPAL_CLIENT_ID` and `PAYPAL_CLIENT_SECRET`
 
 these can be obtained [here](https://developer.paypal.com/docs/api-basics/sandbox/credentials/)
 
 5. Update `client/index.html` script src `clientId` param
 
-   `https://www.paypal.com/sdk/js?client-id=<CLIENT_ID>&...`
+   `https://www.paypal.com/sdk/js?client-id=<PAYPAL_CLIENT_ID>&...`
    
 6. `npm start`.
 
@@ -76,7 +76,7 @@ The sdk requires the following query params to be configured on the script src t
 Example:
 
 ```
-<script src="https://www.paypal.com/sdk/js?client-id=<CLIENT_ID>&components=buttons,fields,marks,funding-eligibility&enable-funding=ideal&currency=EUR"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=<PAYPAL_CLIENT_ID>&components=buttons,fields,marks,funding-eligibility&enable-funding=ideal&currency=EUR"></script>
 ```
 
 ##### Order Payload
@@ -197,3 +197,6 @@ paypal
 
 &nbsp;
 
+
+### PayPal Codespaces Links
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/paypal-examples/ideal)
