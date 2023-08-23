@@ -5,12 +5,12 @@ const {
 } = require("./config")
 
 const {
-  PAYPAL_CLIENT_ID,
-  PAYPAL_CLIENT_SECRET,
+  CLIENT_ID,
+  CLIENT_SECRET,
 } = process.env
 
 async function getAccessToken() {
-  const credentials = Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_CLIENT_SECRET}`).toString(
+  const credentials = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString(
     "base64"
   );
 

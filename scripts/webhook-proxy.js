@@ -5,13 +5,13 @@ const chalk = require("chalk");
 
 dotenv.config();
 
-const { PAYPAL_API_BASE, PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env
+const { PAYPAL_API_BASE, CLIENT_ID, CLIENT_SECRET } = process.env
 
 const { getAccessToken } = require("../server/oauth");
 
 (async function () {
-  if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) {
-    console.log("[Error] missing PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET from .env file")
+  if (!CLIENT_ID || !CLIENT_SECRET) {
+    console.log("[Error] missing CLIENT_ID, CLIENT_SECRET from .env file")
     process.exit(1);
   }
 
