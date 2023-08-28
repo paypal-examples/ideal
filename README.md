@@ -197,3 +197,6 @@ paypal
 
 &nbsp;
 
+
+### PayPal Codespaces Links
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/paypal-examples/ideal)

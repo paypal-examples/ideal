@@ -10,7 +10,7 @@ const { PAYPAL_API_BASE, CLIENT_ID, CLIENT_SECRET } = process.env
 const { getAccessToken } = require("../server/oauth");
 
 (async function () {
-  if(!CLIENT_ID || !CLIENT_SECRET){
+  if (!CLIENT_ID || !CLIENT_SECRET) {
     console.log("[Error] missing CLIENT_ID, CLIENT_SECRET from .env file")
     process.exit(1);
   }
@@ -19,7 +19,7 @@ const { getAccessToken } = require("../server/oauth");
 
   try {
     proxyURL = await ngrok.connect(8080);
-  } catch(err){
+  } catch (err) {
     console.log(err)
     console.log(`[Error] ngrok failed to connect`);
     process.exit(1);
@@ -46,11 +46,11 @@ const { getAccessToken } = require("../server/oauth");
       },
     });
 
-    console.log(`${chalk.blue("Forwarding webhooks to http://localhost:8080/webhook")} `, "\n", 
-    `webhooks can take upto 5 min to process after authorization`, "\n", 
-     "\n", "\n",
-    `${chalk.yellow("Webhook Id:")} ${data.id}`, "\n",
-    "(^C to quit)",
+    console.log(`${chalk.blue("Forwarding webhooks to http://localhost:8080/webhook")} `, "\n",
+      `webhooks can take upto 5 min to process after authorization`, "\n",
+      "\n", "\n",
+      `${chalk.yellow("Webhook Id:")} ${data.id}`, "\n",
+      "(^C to quit)",
     )
 
     // on terminal shutdown - delete the webhook
