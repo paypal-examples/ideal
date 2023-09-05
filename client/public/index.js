@@ -1,16 +1,5 @@
 /* eslint-disable consistent-return, new-cap, no-alert, no-console */
 
-var order = {
-  purchase_units: [
-    {
-      amount: {
-        currency_code: "EUR",
-        value: "49.99",
-      },
-    },
-  ],
-};
-
 /* Paypal */
 paypal
   .Marks({
@@ -26,12 +15,37 @@ paypal
       color: "silver",
     },
     createOrder(data, actions) {
-      return actions.order.create(order);
+      return fetch("/api/orders", {
+        method: "post",
+        // use the "body" param to optionally pass additional order information
+        // like product skus and quantities
+        body: JSON.stringify({
+          cart: [
+            {
+              sku: "<YOUR_PRODUCT_STOCK_KEEPING_UNIT>",
+              quantity: "<YOUR_PRODUCT_QUANTITY>",
+            },
+          ],
+        }),
+      })
+        .then((response) => response.json())
+        .then((order) => order.id);
     },
     onApprove(data, actions) {
-      return actions.order.capture().then((details) => {
-        alert(`Transaction completed by ${details.payer.name.given_name}!`);
-      });
+      fetch(`/api/orders/${data.orderID}/capture`, {
+        method: "post",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          swal(
+            "Order Captured!",
+            `Id: ${data.id}, ${Object.keys(data.payment_source)[0]}, ${
+              data.purchase_units[0].payments.captures[0].amount.currency_code
+            } ${data.purchase_units[0].payments.captures[0].amount.value}`,
+            "success"
+          );
+        })
+        .catch(console.error);
     },
     onCancel(data, actions) {
       console.log("onCancel called");
@@ -98,10 +112,24 @@ paypal
       label: "pay",
     },
     createOrder(data, actions) {
-      return actions.order.create(order);
+      return fetch("/api/orders", {
+        method: "post",
+        // use the "body" param to optionally pass additional order information
+        // like product skus and quantities
+        body: JSON.stringify({
+          cart: [
+            {
+              sku: "<YOUR_PRODUCT_STOCK_KEEPING_UNIT>",
+              quantity: "<YOUR_PRODUCT_QUANTITY>",
+            },
+          ],
+        }),
+      })
+        .then((response) => response.json())
+        .then((order) => order.id);
     },
     onApprove(data, actions) {
-      fetch(`/capture/${data.orderID}`, {
+      fetch(`/api/orders/${data.orderID}/capture`, {
         method: "post",
       })
         .then((res) => res.json())
