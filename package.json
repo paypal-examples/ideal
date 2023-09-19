@@ -14,7 +14,8 @@
     "chalk": "^4.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "open": "^7.3.1"
+    "open": "^8.4.0",
+    "ejs": "^3.1.9"
   },
   "devDependencies": {
     "ngrok": "^3.4.0"
