@@ -65,6 +65,7 @@ paypal
 
 paypal
   .PaymentFields({
+    fundingSource: paypal.FUNDING.IDEAL,
     // style object is optional
     style: {
       // customize field attributes (optional)
