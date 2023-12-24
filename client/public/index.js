@@ -66,38 +66,41 @@ paypal
 paypal
   .PaymentFields({
     fundingSource: paypal.FUNDING.IDEAL,
+    // style object is optional
     style: {
+      // customize field attributes (optional)
       variables: {
-        fontFamily: "'Helvetica Neue', Arial, sans-serif",
-        fontSizeBase: "0.9375rem",
-        fontSizeSm: "0.93rem",
-        fontSizeM: "0.93rem",
-        fontSizeLg: "1.0625rem",
-        textColor: "#2c2e2f",
-        colorTextPlaceholder: "#2c2e2f",
-        colorBackground: "#fff",
-        colorInfo: "#0dcaf0",
-        colorDanger: "#d20000",
-        borderRadius: "0.2rem",
-        borderColor: "#dfe1e5",
-        borderWidth: "1px",
-        borderFocusColor: "black",
-        spacingUnit: "10px",
+        fontFamily: "'Helvetica Neue', Arial, sans-serif", // applies to all payment fields text
+        fontSizeBase: "0.9375rem", // applies to input, placeholder, and dropdown text values
+        fontSizeM: "0.93rem", // the payment fields title description
+        textColor: "#2c2e2f", // applies payment fields title description, input, and dropdown text
+        colorTextPlaceholder: "#2c2e2f", // applies to the placeholder text
+        colorBackground: "#fff", // background color of the input and dropdown fields
+        colorDanger: "#d20000", // applies to the invalid field border and validation text
+        borderRadius: "0.2rem", // for the input and dropdown fields
+        borderColor: "#dfe1e5", // for the input and dropdown fields
+        borderWidth: "1px", // for the input and dropdown fields
+        borderFocusColor: "black", // color for the invalid field border and validation text
+        spacingUnit: "10px", // spacing between multiple input fields
       },
+
+      // set custom rules to apply to fields classes (optional)
+      // see https://www.w3schools.com/css/css_syntax.asp fore more on selectors and declarations
       rules: {
-        ".Input": {},
-        ".Input:hover": {},
-        ".Input:focus": {
+        ".Input": {}, // overwrite properties for the input fields
+        ".Input:hover": {}, // applies to the input field on mouse hover
+        ".Input:focus": { // applies to the focused input field
+          color: 'blue',
+          boxShadow: '0px 2px 4px rgb(0 0 0 / 50%), 0px 1px 6px rgb(0 0 0 / 25%)',
         },
-        ".Input:active": {},
-        ".Input--invalid": {},
-        ".Label": {},
-        ".Error": {
-          marginTop: '2px',
-        },
+        ".Input:active": {}, // applies when input fields are clicked
+        ".Input--invalid": {}, // applies to input fields when invalid input is entered
+        ".Label": {}, // overwrite properties for the input field labels
       },
     },
+
     fields: {
+      // fields prefill info (optional)
       name: {
         value: "",
       },
